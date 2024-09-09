@@ -646,18 +646,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.message.edit_text(script.STATUS_TXT.format(files, users, chats, premium, u_size, f_size, uptime), reply_markup=InlineKeyboardMarkup(buttons)
         )
         
-    elif query.data == "owner":
+    elif query.data == "premium":
         buttons = [[
-            InlineKeyboardButton(text=f"☎️ ᴄᴏɴᴛᴀᴄᴛ - {(await client.get_users(admin)).first_name}", user_id=admin)
-        ]
-            for admin in ADMINS
-        ]
-        buttons.append(
-            [InlineKeyboardButton('« ʙᴀᴄᴋ', callback_data='about')]
-        )
+            InlineKeyboardButton('🏄 Back', callback_data='start')
+        ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
-            text=script.MY_OWNER_TXT,
+            text=script.PREMIUM_TXT,
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
